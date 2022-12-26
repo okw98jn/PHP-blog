@@ -1,0 +1,51 @@
+.new_form {
+  width: 70%;
+  margin: 0 auto;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 8px rgb(158, 158, 158);
+  padding: 50px;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.item {
+  margin-bottom: 20px;
+}
+
+.label_left {
+  display: inline-block;
+  width: 15%;
+  border-left: solid 5px #5250e0;
+  padding-left: 15px;
+  vertical-align: top;
+}
+
+.new_form input[type="text"],
+.new_form input[type="number"],
+.new_form input[type="email"],
+.new_form input[type="password"] {
+  padding: 10px;
+  width: 65%;
+}
+
+.new_form textarea {
+  padding: 10px;
+  height: 100px;
+  font-size: 14px;
+  width: 65%;
+}
+
+.new_form select {
+  height: 35px;
+  width: 65%;
+}
+
+.new_form input[type="submit"] {
+  background: #6f6eb4;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 0 auto;
+}
+
