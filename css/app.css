@@ -3,6 +3,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   background-color: #f3f3f3;
+  min-height: 100vh;
 }
 
 li {
@@ -24,7 +25,7 @@ input, textarea {
 }
 
 .container {
-  padding: 60px 5% 0px 5%;
+  padding: 60px 5% 50px 5%;
 }
 
 .container h2 {

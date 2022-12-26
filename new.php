@@ -1,3 +1,24 @@
+<?php 
+require_once("create.php");
+$blog = $_POST;
+$error_messages = [];
+
+if(!empty($blog["submit"])) {
+	if (empty($blog['title'])) {
+		$error_messages[] = "タイトルを入力してください";
+	}
+  if (empty($blog["content"])) {
+    $error_messages[] = "投稿内容を入力してください";
+  }
+  if (empty($blog["category"])) {
+    $error_messages[] = "カテゴリーを選択してください";
+  }
+  if (empty($error_messages)) {
+    blogCreate($blog);
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +29,17 @@
   <title>新規投稿</title>
 </head>
 <body>
-  <?php include("header.php"); ?>
+<?php include("header.php"); ?>
   <div class="container">
     <h2>投稿</h2>
-      <form class="new_form" action="create.php" method="POST">
+      <form class="new_form" action="new.php" method="POST">
+        <?php if( !empty($error_messages) ): ?>
+          <ul class="error_messages">
+            <?php foreach( $error_messages as $error_message ): ?>
+              <li><?php echo $error_message; ?></li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
         <div class="item">
           <label class="label_left" for="title">タイトル</label>
           <input id="title" name="title" type="text" placeholder="タイトルを入力"><br>
@@ -38,7 +66,7 @@
             <input id="private" type="radio" name="publish_status" value="2">
           </fieldset>
         </div>
-        <input type="submit" value="送信">
+        <input type="submit" value="送信" name="submit">
       </form>
   </div>
 </body>
