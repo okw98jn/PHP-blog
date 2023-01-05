@@ -1,6 +1,9 @@
 <?php 
-require_once("create.php");
+require_once("dbc.php");
+require_once("update.php");
 $blog = $_POST;
+$id = $_GET["id"];
+$result = getBlog($id);
 $error_messages = [];
 
 if(!empty($blog["submit"])) {
@@ -14,7 +17,7 @@ if(!empty($blog["submit"])) {
     $error_messages[] = "カテゴリーを選択してください";
   }
   if (empty($error_messages)) {
-    blogCreate($blog);
+    blogUpdate($blog);
   }
 }
 ?>
@@ -26,13 +29,13 @@ if(!empty($blog["submit"])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/blog_app/css/new.css">
-  <title>新規投稿</title>
+  <title>編集</title>
 </head>
 <body>
 <?php include("header.php"); ?>
   <div class="container">
-    <h2>投稿</h2>
-      <form class="new_form" action="new.php" method="POST">
+    <h2>編集</h2>
+      <form class="new_form" action="edit.php" method="POST">
         <?php if( !empty($error_messages) ): ?>
           <ul class="error_messages">
             <?php foreach( $error_messages as $error_message ): ?>
@@ -40,13 +43,14 @@ if(!empty($blog["submit"])) {
             <?php endforeach; ?>
           </ul>
         <?php endif; ?>
+        <input type="hidden" name="id" value="<?php echo $id;?>">
         <div class="item">
           <label class="label_left" for="title">タイトル</label>
-          <input id="title" name="title" type="text" placeholder="タイトルを入力" value="<?php echo $blog["title"];?>"><br>
+          <input id="title" name="title" type="text" placeholder="タイトルを入力" value="<?php echo $result["title"];?>"><br>
         </div>
         <div class="item">
           <label class="label_left" for="content">内容</label>
-          <textarea id="content" name="content" type="text" placeholder="内容を入力"><?php echo $blog["content"];?></textarea><br>
+          <textarea id="content" name="content" type="text" placeholder="内容を入力"><?php echo $result["content"];?></textarea><br>
         </div>
         <div class="item">
           <label class="label_left" for="category">カテゴリー</label>

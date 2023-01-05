@@ -28,6 +28,7 @@ $blogData = getAllBlog();
 				<td><?php echo $blog["title"]; ?></td>
 				<td><?php echo setCategoryName($blog["category"]); ?></td>
 				<td><a href="/blog_app/detail.php?id=<?php echo $blog["id"]; ?>">詳細</a></td>
+				<td><a href="/blog_app/delete.php?id=<?php echo $blog["id"]; ?>">削除</a></td>
 			</tr>
 			<?php endforeach; ?>
 		</table>

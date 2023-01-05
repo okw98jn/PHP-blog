@@ -1,6 +1,7 @@
 <?php
 require_once("dbc.php");
-$result = getBlog($_GET["id"]);
+$id = $_GET["id"];
+$result = getBlog($id);
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +21,8 @@ $result = getBlog($_GET["id"]);
 		<p>カテゴリ：<?php echo setCategoryName($result["category"]); ?></p>
 		<hr>
 		<p>本文：<?php echo $result["content"]; ?></p>
+		<a href="/blog_app/edit.php?id=<?php echo $id;?>">編集</a>
+		<a href="/blog_app/delete.php?id=<?php echo $id;?>">削除</a>
   </div>
 </body>
 </html>
